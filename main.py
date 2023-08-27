@@ -6,6 +6,8 @@ client = Spot() # my first spot object
 
 print("client.time(): ",client.time())
 
-pprint(client.klines("BTCTUSD","15m",limit=1))
+#pprint(client.klines("BTCTUSD","15m",limit=1))
 
-pprint(client.ticker_price("BTCTUSD"))
+while True:
+    pprint(float(client.ticker_price("BTCTUSD").get('price')))
+#pprint(client.ticker_price("BTCTUSD").get('price'))
