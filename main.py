@@ -1,10 +1,11 @@
 from binance.spot import Spot # including Spot library
+from pprint import pprint
 import config
 
 client = Spot() # my first spot object
 
 print("client.time(): ",client.time())
 
-print(client.klines("BTCTUSD","15m",limit=1))
+pprint(client.klines("BTCTUSD","15m",limit=1))
 
-print(client.ticker_price("BTCTUSD"))
+pprint(client.ticker_price("BTCTUSD"))
