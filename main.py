@@ -2,8 +2,8 @@ from binance.spot import Spot # including Spot library
 from pprint import pprint
 import config
 import time
-import readchar
-#from getkey import getkey, keys
+#import readchar
+from getkey import getkey, keys
 
 client = Spot() # my first spot object
 buy = False
@@ -31,7 +31,8 @@ while True and (yn != 'n'):
         sell = True
         buy = False
         print("buy again?: ")
-        yn = readchar.readkey()
+        yn = getkey()
+        #yn = readchar.readkey()
 
     if sell and (yn != 'n'):
         buyPrice = float(client.ticker_price("BTCTUSD").get('price'))
