@@ -13,9 +13,22 @@ buyPrice = 0.0
 sellPrice = 0.0
 yn = 'y'
 price = 25850
-quantity = 100/price
+quantity = round(100/price, 5)
 
 print("quantity: ", quantity)
+
+params = {
+    "symbol": "BTCTUSD",
+    "side": "BUY",
+    "type": "LIMIT",
+    "timeInForce": "GTC",
+    "quantity": quantity,
+    "price": price
+}
+# print(client.account_status())
+response = client.new_order(**params)
+print(response)
+
 # print("client.time(): ",client.time())
 #
 # #pprint(client.klines("BTCTUSD","15m",limit=1))
