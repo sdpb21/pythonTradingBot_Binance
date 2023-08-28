@@ -24,7 +24,7 @@ buy = True
 while True and (yn != 'n'):
     time.sleep(2.0)
     priceNow = float(client.ticker_price("BTCTUSD").get('price'))
-    #pprint(priceNow)
+    print("priceNow: ",priceNow," buyPrice: ",buyPrice)
     if buy and (priceNow > buyPrice):
         sellPrice = priceNow
         print("sell BTC at: ",sellPrice)
