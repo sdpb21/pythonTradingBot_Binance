@@ -25,25 +25,32 @@ params = {
     "price": price
 }
 
-# response = client.new_order(**params)
-# print(response)
+response = client.new_order(**params)
+print(response)
 
 # pprint(client.klines("BTCTUSD","15m",limit=1))
 
-buyPrice = price
-print("buy BTC at: ", buyPrice)
+print("buy BTC at: ", price)
 buy = True
 
 while True and (yn != 'n'):
     time.sleep(2.0)
     priceNow = float(client.ticker_price("BTCTUSD").get('price'))
-    print("priceNow: ", priceNow, " buyPrice: ", buyPrice)
-    if buy and (priceNow >= (buyPrice+1.0)):
+    print("priceNow: ", priceNow, " buyPrice: ", price)
+    if buy and (priceNow >= (price+1.0)):
         price = priceNow
         side = "SELL"
-        print(params)
-        # response = client.new_order(**params)
-        # print(response)
+        params = {
+            "symbol": "BTCTUSD",
+            "side": side,
+            "type": "LIMIT",
+            "timeInForce": "GTC",
+            "quantity": quantity,
+            "price": price
+        }
+        # print(params)
+        response = client.new_order(**params)
+        print(response)
         print("sell BTC at: ", price)
         sell = True
         buy = False
@@ -54,8 +61,18 @@ while True and (yn != 'n'):
     if sell and (yn != 'n'):
         price = float(client.ticker_price("BTCTUSD").get('price'))
         side = "BUY"
-        # response = client.new_order(**params)
-        # print(response)
+        quantity = round(100 / price, 5)
+        params = {
+            "symbol": "BTCTUSD",
+            "side": side,
+            "type": "LIMIT",
+            "timeInForce": "GTC",
+            "quantity": quantity,
+            "price": price
+        }
+        # print(params)
+        response = client.new_order(**params)
+        print(response)
         print("buy BTC at: ", price)
         sell = False
         buy = True
