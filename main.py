@@ -13,7 +13,7 @@ yn = 'y'
 symbol1 = "BTCTUSD"
 price = float(client.ticker_price(symbol1).get('price'))
 # price = 26000
-quantity = round(100/price, 5)
+quantity = round(200/price, 5)
 side = "BUY"
 
 print("quantity: ", quantity)
@@ -47,7 +47,7 @@ while True and (yn != 'n'):
         status = client.get_order(symbol=symbol1, orderId=orderId1).get('status')
     priceNow = float(client.ticker_price(symbol1).get('price'))
     print("priceNow: ", priceNow, " buyPrice: ", price)
-    if buy and (priceNow >= (price+1.0)):
+    if buy and (priceNow >= (price+3.0)):
         price = priceNow
         side = "SELL"
         params = {
@@ -71,7 +71,7 @@ while True and (yn != 'n'):
     if sell and (yn != 'n'):
         price = float(client.ticker_price(symbol1).get('price'))
         side = "BUY"
-        quantity = round(100 / price, 5)
+        quantity = round(200 / price, 5)
         params = {
             "symbol": symbol1,
             "side": side,
